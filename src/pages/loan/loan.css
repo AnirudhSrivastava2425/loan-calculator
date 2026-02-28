@@ -56,8 +56,18 @@
     width: 1px;
     background-color: #eeeeee2d;
 }
-.content-holder{
+.disp-wrapper{
     width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 56px;
+
+}
+.content-holder{
+    /* width: 45%; */
     display: flex;
     flex-direction: row;
     gap: 160px;

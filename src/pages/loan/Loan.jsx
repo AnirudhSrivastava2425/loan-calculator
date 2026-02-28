@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import './loan.css'
+import PieChart from '../../components/graphs/PieChart'
 const Loan = () => {
 
   const [loan, setLoan] = useState({
     principal: 1000000,
     interest: 6,
     time: 7,
-    EMI:14609,
-    totalInterest:227119,
-    totalAmount:1227119,
+    EMI: 14609,
+    totalInterest: 227119,
+    totalAmount: 1227119,
   })
 
   const handleChange = (e) => {
@@ -23,17 +24,17 @@ const Loan = () => {
 
     let updatedLoan = {
       ...loan,
-      [name]:value,
+      [name]: value,
     }
-    let  emi = EMICal(updatedLoan.principal,updatedLoan.interest,updatedLoan.time)
+    let emi = EMICal(updatedLoan.principal, updatedLoan.interest, updatedLoan.time)
 
-    let totalAmt = emi*Number(updatedLoan.time)*12
+    let totalAmt = emi * Number(updatedLoan.time) * 12
 
-    setLoan((prev)=>({
+    setLoan((prev) => ({
       ...prev,
-      EMI:Math.ceil(emi),
-      totalAmount:Math.ceil(totalAmt),
-      totalInterest:Math.ceil(totalAmt)-updatedLoan.principal,
+      EMI: Math.ceil(emi),
+      totalAmount: Math.ceil(totalAmt),
+      totalInterest: Math.ceil(totalAmt) - updatedLoan.principal,
     }))
   }
 
@@ -41,11 +42,11 @@ const Loan = () => {
     return r / 1200
   }
 
-  const EMICal = (principal,interest,time) =>{
-    const t = Number(time*12);
+  const EMICal = (principal, interest, time) => {
+    const t = Number(time * 12);
     const r = Number(convertInterest(interest))
     const p = Number(principal)
-    const emi = ((p*r) * (1+r)**t)/((1+r)**t - 1)
+    const emi = ((p * r) * (1 + r) ** t) / ((1 + r) ** t - 1)
     return emi
   }
 
@@ -104,18 +105,23 @@ const Loan = () => {
 
       <div className="horizontal-divider"> </div>
 
-      <div className="content-holder">
-        <div className="stats-holder">
-          <span className="label-stats">Monthly EMI</span>
-          <span className="label-stats">Principal Amount</span>
-          <span className="label-stats">Total Amount</span>
-          <span className="label-stats">Total Interest</span>
+      <div className="disp-wrapper">
+        <div className="pie-chart-parent">
+          <PieChart principal={loan.principal} interest={loan.totalInterest}/>
         </div>
-        <div className="stats-holder value-holder">
-          <span className='value-stats'>₹ {loan.EMI}</span>
-          <span className='value-stats'>₹ {loan.principal}</span>
-          <span className='value-stats'>₹ {loan.totalAmount}</span>
-          <span className='value-stats'>₹ {loan.totalInterest}</span>
+        <div className="content-holder">
+          <div className="stats-holder">
+            <span className="label-stats">Monthly EMI</span>
+            <span className="label-stats">Principal Amount</span>
+            <span className="label-stats">Total Amount</span>
+            <span className="label-stats">Total Interest</span>
+          </div>
+          <div className="stats-holder value-holder">
+            <span className='value-stats'>₹ {(loan.EMI).toLocaleString("en-IN")}</span>
+            <span className='value-stats'>₹ {(loan.principal).toLocaleString("en-IN")}</span>
+            <span className='value-stats'>₹ {(loan.totalAmount).toLocaleString("en-IN")}</span>
+            <span className='value-stats'>₹ {(loan.totalInterest).toLocaleString("en-IN")}</span>
+          </div>
         </div>
       </div>
     </div>
