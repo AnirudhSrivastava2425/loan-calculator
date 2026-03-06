@@ -8,7 +8,7 @@ const PieChart = ({principal,interest}) => {
     labels: ["Principal", "Interest"],
     datasets: [
       {
-        label: "Loan Breakdown",
+        label: " INR ",
         data: [principal, interest],
         backgroundColor: [
           "rgb(62, 153, 214)",

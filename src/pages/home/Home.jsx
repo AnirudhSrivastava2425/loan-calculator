@@ -7,6 +7,9 @@ const Home = () => {
         <div onClick={()=>navigate('/loan')} className="disp-tile">
             Loan & EMI Calculator
         </div>
+        <div onClick={()=>navigate('/sip')} className="disp-tile">
+            SIP Calculator
+        </div>
     </div>
   )
 }
